@@ -1,0 +1,126 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body,html{
+  overflow: hidden;
+  background: deeppink;
+}
+
+.container{
+    position: fixed;
+    height: 40px;
+    width: 75px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-right-radius: 50%;
+    transition: .7s cubic-bezier(.63,-1.13,.32,1.24);
+    
+}
+
+ul li{
+    list-style: none;
+    color: deeppink;
+    font-size: 30px;
+    cursor: pointer;
+    padding-bottom: 5px;
+    display: none;
+}
+
+ul li:hover{
+    color: black;
+}
+
+.content{
+    color: white;
+    margin: 40px;
+    padding: 20px;
+    text-align: justify; /*yazıyı iki tarafa dayandırır*/
+    line-height: 25px;
+
+}
+
+input{
+    display: none ;
+}
+
+label{
+    z-index: 99;
+    position: fixed;
+    top: 5px;
+    left: 20px;
+    cursor: pointer;
+    /*labelın içinde divlerden oluşan barın çarpıya ve geri bara dönmesindeki geçişleri düzenler*/
+    transition: .7s cubic-bezier(1,-0.21,.2,1.31);
+    
+}
+
+label > div{
+    height: 5px;
+    width: 35px;
+    background: deeppink;
+    margin: 5px;
+    /*barın çarpı olması ve sonra tekrar bar olmasını yavaşlatırki görelim.
+    transform kısmı nthchild kısmında yazıldı*/
+    transition: transform .7s;
+   
+}
+
+label:hover > div{
+    background: black;
+}
+
+.toggle-nav:checked ~ .container{
+    height: 100vh;
+    width: 275px;
+}
+
+.toggle-nav:checked ~ label{
+    left: calc(250px - 40px); /*250px genişiğinden 40px daha az bir genişliğe 
+                              sahip ol leftten.Bu bar iconuna tıklanınca sağa kaymasını sağlar*/
+}
+
+
+/*aşağıdaki kısım bar ı tıklanınca çarpı yapar sonra tekrar tıklanınca bar a dönüştürür*/
+
+.toggle-nav:checked ~ label > div:nth-child(1){
+    transform: rotateZ(45deg);
+    -webkit-transform: rotateZ(45deg);
+    -moz-transform: rotateZ(45deg);
+    -ms-transform: rotateZ(45deg);
+    -o-transform: rotateZ(45deg);
+    margin-top: 18px;
+}
+
+.toggle-nav:checked ~ label > div:nth-child(3){
+    transform: rotateZ(-45deg);
+    -webkit-transform: rotateZ(-45deg);
+    -moz-transform: rotateZ(-45deg);
+    -ms-transform: rotateZ(-45deg);
+    -o-transform: rotateZ(-45deg);
+    margin-top: -20px;
+}
+
+.toggle-nav:checked ~ label > div:nth-child(2){
+    opacity: 0;
+}
+
+.toggle-nav:checked ~ .container ul li{
+    display: flex;
+}
+
+.toggle-nav:checked ~ .content{
+    position: absolute;
+    left: 20%;   
+}
+
+
+
+
+
+
+
+
